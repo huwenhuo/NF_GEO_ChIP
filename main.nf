@@ -82,20 +82,10 @@ process DOWNLOAD_SRA {
     done < "${srr_file}"                                                          
 
     pattern="${sample_name}_fastq/*_1.fastq"
-    file_count=\$(ls \$pattern 2>/dev/null | wc -l)
-    if [ \$file_count -eq 1 ]; then
-        mv \$(ls \$pattern) ${sample_name}_1.fastq
-    else
-        cat \$(ls \$pattern | sort) > ${sample_name}_1.fastq
-    fi
+    cat \$(ls \$pattern | sort) > ${sample_name}_1.fastq
 
     pattern="${sample_name}_fastq/*_2.fastq"
-    file_count=\$(ls \$pattern 2>/dev/null | wc -l)
-    if [ \$file_count -eq 1 ]; then
-        mv \$(ls \$pattern) ${sample_name}_2.fastq
-    else
-        cat \$(ls \$pattern | sort) > ${sample_name}_2.fastq
-    fi
+    cat \$(ls \$pattern | sort) > ${sample_name}_2.fastq
 
     """ 
 }  
