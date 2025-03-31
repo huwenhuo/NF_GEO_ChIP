@@ -28,10 +28,7 @@ process EXTRACT_SRR {
 
     script:
     """
-    singularity exec ${params.img_edirect} \\
-        esearch -db gds -query ${gsm_id} | \\
-        elink -target sra | \\
-        efetch -format runinfo > ${gsm_id}_runinfo.txt
+    singularity exec ${params.img_edirect} esearch -db gds -query ${gsm_id} | elink -target sra | efetch -format runinfo > ${gsm_id}_runinfo.txt
 
     # Extract SRR IDs
     grep ${gsm_id} ${gsm_id}_runinfo.txt | cut -d ',' -f 1 | grep SRR > ${gsm_id}_srr_list.txt
